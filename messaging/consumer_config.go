@@ -30,4 +30,6 @@ type ConsumerConfig struct {
 
 	// Generally inherited by parent stream and other markers, now can be configured directly.
 	Replicas int `json:"num_replicas"`
+
+	StartID string `json:"start_id"`
 }
