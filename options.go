@@ -1,11 +1,9 @@
 package ebrick
 
 import (
-	"github.com/trinitytechnology/ebrick/cache"
 	"github.com/trinitytechnology/ebrick/config"
 	"github.com/trinitytechnology/ebrick/database"
 	"github.com/trinitytechnology/ebrick/logger"
-	"github.com/trinitytechnology/ebrick/messaging"
 	"github.com/trinitytechnology/ebrick/observability"
 	"github.com/trinitytechnology/ebrick/server"
 	sdktrace "go.opentelemetry.io/otel/sdk/trace"
@@ -17,8 +15,6 @@ type Options struct {
 	Name           string
 	Version        string
 	Database       *gorm.DB
-	Cache          cache.Cache
-	EventStream    messaging.CloudEventStream
 	HttpServer     server.HttpServer
 	TracerProvider *sdktrace.TracerProvider
 	Logger         *zap.Logger
@@ -33,8 +29,6 @@ func newOptions(opts ...Option) *Options {
 		Name:           serviceCfg.Name,
 		Version:        serviceCfg.Version,
 		Database:       database.DefaultDataSource,
-		Cache:          cache.DefaultCache,
-		EventStream:    messaging.DefaultCloudEventStream,
 		HttpServer:     server.DefaultServer,
 		TracerProvider: observability.DefaultTraceProvider,
 		Logger:         logger.DefaultLogger,
